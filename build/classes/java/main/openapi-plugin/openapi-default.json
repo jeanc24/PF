@@ -294,12 +294,12 @@
         "security": []
       }
     },
-    "/api/urls/detalles/{shortcode}": {
+    "/api/urls/detalles/{urlAcortada}": {
       "get": {
         "tags": [],
         "parameters": [
           {
-            "name": "shortcode",
+            "name": "urlAcortada",
             "in": "path",
             "required": true,
             "deprecated": false,

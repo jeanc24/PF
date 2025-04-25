@@ -114,7 +114,7 @@ public class UrlControlador implements CrudOpenApi<URL> {
     )
     public void delete(@NotNull Context ctx) {
         try {
-            String shortcode = "http://pf-production.up.railway.app/api/cut/" + ctx.pathParam("shortcode");
+            String shortcode = "https://pf-production.up.railway.app/api/cut/" + ctx.pathParam("shortcode");
             URL url = urlServices.findByShortCode(shortcode);
 
             if (url == null) {
@@ -189,7 +189,7 @@ public class UrlControlador implements CrudOpenApi<URL> {
             responses = {@OpenApiResponse(status = "200", description = "Redirigir por url acortada", content = {@OpenApiContent(from = URL.class)})}
     )
     public void redirigirUrlOriginal(Context ctx) {
-        String codigoUrl = "http://pf-production.up.railway.app/api/cut/" + ctx.pathParam("shortcode");
+        String codigoUrl = "https://pf-production.up.railway.app/api/cut/" + ctx.pathParam("shortcode");
         System.out.println("primera parte");
         URL url = urlServices.findByShortCode(codigoUrl);
         if (url != null) {
@@ -229,15 +229,15 @@ public class UrlControlador implements CrudOpenApi<URL> {
 
 
     @OpenApi(
-            path = "/api/urls/detalles/{shortcode}",
+            path = "/api/urls/detalles/{urlAcortada}",
             methods = HttpMethod.GET,
-            pathParams = {@OpenApiParam(name = "shortcode", required = true, type = ObjectId.class)},
+            pathParams = {@OpenApiParam(name = "urlAcortada", required = true, type = ObjectId.class)},
             responses = {@OpenApiResponse(status = "200", description = "Detalles completos de URL con estadísticas", content = {@OpenApiContent(from = URL.class)})}
     )
     public void getDetallesUrl(Context ctx) {
         try {
             System.out.println("estoy aqui en getDetallesUrl");
-            URL url = urlServices.findByShortCode(ctx.pathParam("shortcode"));
+            URL url = urlServices.findByShortCode(ctx.pathParam("urlAcortada"));
 
             if (url != null) {
                 // Podemos procesar los datos aquí si necesitamos cálculos especiales

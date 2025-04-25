@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlAcortada = `https://pf-production.up.railway.app/api/cut/${shortcode}`;
 
     // Hacer la petición al backend
-    fetch(`/api/urls/detalles/${encodeURIComponent(shortcode)}`,{method: "GET",
+    fetch(`/api/urls/detalles/${encodeURIComponent(urlAcortada)}`,{method: "GET",
         headers: {
             "Authorization": `Bearer ${localStorage.getItem("jwt")}` // Agrega el token aquí
         }
