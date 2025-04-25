@@ -1,19 +1,24 @@
 <div th:fragment="navbar"
      class="navbar bg-base-100/95 shadow-sm fixed top-0 w-full z-50 backdrop-blur-md border-b border-base-300">
+    <!-- Sección Izquierda -->
     <div class="navbar-start">
         <div class="dropdown">
-            <!-- Botón Mobile -->
-            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden text-base-content">
+            <!-- Botón para Móvil (Hamburger) -->
+            <label tabindex="0" class="btn btn-ghost lg:hidden text-base-content">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
                      viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M4 6h16M4 12h8m-8 6h16"/>
+                          d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
-            </div>
+            </label>
             <!-- Menú Mobile -->
-            <ul class="menu menu-horizontal px-1 gap-2">
-                <li><a href="/listar"
-                       class="text-base-content hover:bg-base-200 rounded-btn">Url's</a></li>
+            <ul tabindex="0"
+                class="menu menu-sm dropdown-content mt-3 z-[999] p-2 shadow bg-base-100 rounded-box w-52">
+                <li><a class="text-base-content hover:bg-base-200" href="/">Home</a></li>
+                <li><a class="text-base-content hover:bg-base-200" href="/listar">URLs</a></li>
+                <li th:if="${session.usuario != null and session.usuario.tieneRol('ROLE_ADMIN')}">
+                    <a class="text-base-content hover:bg-base-200" href="/crud-usuarios">Crud Usuarios</a>
+                </li>
             </ul>
         </div>
         <!-- Logo -->
@@ -23,8 +28,10 @@
     <!-- Menú Desktop -->
     <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1 gap-2">
-            <li><a href="/listar"
-                   class="text-base-content hover:bg-base-200 rounded-btn">Url's</a></li>
+            <li><a href="/listar" class="text-base-content hover:bg-base-200 rounded-btn">URLs</a></li>
+            <li th:if="${session.usuario != null and session.usuario.tieneRol('ROLE_ADMIN')}">
+                <a href="/crud-usuarios" class="text-base-content hover:bg-base-200 rounded-btn">Crud Usuarios</a>
+            </li>
         </ul>
     </div>
 
@@ -36,18 +43,8 @@
             </p>
         </div>
 
-        <th:block th:if="${session.usuario != null and session.usuario.tieneRol('ROLE_ADMIN')}">
-            <a class="btn btn-primary btn-sm" href="/crud-usuarios">Crud Usuarios</a>
-        </th:block>
-
-        <a class="btn btn-ghost text-base-content" th:if="${session.usuario == null}" href="/login">
-            Login
-        </a>
-        <a class="btn btn-primary btn-sm" th:if="${session.usuario == null}" href="/signup">
-            SignUp
-        </a>
-
+        <a class="btn btn-ghost text-base-content" th:if="${session.usuario == null}" href="/login">Login</a>
+        <a class="btn btn-primary btn-sm" th:if="${session.usuario == null}" href="/signup">SignUp</a>
         <button id="logout" type="submit" class="btn btn-error btn-sm hidden">Logout</button>
-
     </div>
 </div>

@@ -99,7 +99,7 @@ public class Main {
                         put(urlControlador::update);
                         get("/{url-id}",urlControlador::getOne);
                         delete("/{shortcode}",urlControlador::delete);
-                        get("detalles/{urlAcortada}", urlControlador::getDetallesUrl);
+                        get("detalles/{shortcode}", urlControlador::getDetallesUrl);
                     });
 
                     path("/clients", () -> {
