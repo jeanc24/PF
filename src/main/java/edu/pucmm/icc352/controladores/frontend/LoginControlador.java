@@ -116,7 +116,7 @@ public class LoginControlador extends BaseControlador {
             Usuario nuevoUsuario = new Usuario(username, nombre, password, roles, null);
             usuarioServices.create(nuevoUsuario);
             ctx.sessionAttribute("usuario", nuevoUsuario);
-            ctx.redirect("/");
+            ctx.redirect("/login");
 
         } catch (Exception e) {
             e.printStackTrace();
