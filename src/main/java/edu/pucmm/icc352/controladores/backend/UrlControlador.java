@@ -229,15 +229,15 @@ public class UrlControlador implements CrudOpenApi<URL> {
 
 
     @OpenApi(
-            path = "/api/urls/detalles/{urlAcortada}",
+            path = "/api/urls/detalles/{shortcode}",
             methods = HttpMethod.GET,
-            pathParams = {@OpenApiParam(name = "urlAcortada", required = true, type = ObjectId.class)},
+            pathParams = {@OpenApiParam(name = "shortcode", required = true, type = ObjectId.class)},
             responses = {@OpenApiResponse(status = "200", description = "Detalles completos de URL con estadísticas", content = {@OpenApiContent(from = URL.class)})}
     )
     public void getDetallesUrl(Context ctx) {
         try {
             System.out.println("estoy aqui en getDetallesUrl");
-            URL url = urlServices.findByShortCode(ctx.pathParam("urlAcortada"));
+            URL url = urlServices.findByShortCode(ctx.pathParam("shortcode"));
 
             if (url != null) {
                 // Podemos procesar los datos aquí si necesitamos cálculos especiales
