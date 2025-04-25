@@ -54,7 +54,7 @@ public class CrudControlador extends BaseControlador {
         Usuario usuario = ctx.sessionAttribute("usuario");
         model.put("usuarioSesion", usuario);
         model.put("usuarios", UsuarioServices.getInstancia().getAll());
-        model.put("titulo", "Gestión de Usuarios");
+        model.put("titulo", "Gestion de Usuarios");
         ctx.render("template/crud/crudUsuario.html", model);
     }
 
