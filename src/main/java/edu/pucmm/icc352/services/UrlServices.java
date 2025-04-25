@@ -94,7 +94,7 @@ public class UrlServices {
 
     public String generarUrlAcortada(ObjectId objectId) {
         long idLong = objectId.getTimestamp();  // Usamos el timestamp del ObjectId para generar una base62 única
-        return "http://localhost:7001/api/cut/" + Base62.encode(idLong);
+        return "https://pf-production.up.railway.app/api/cut/" + Base62.encode(idLong);
     }
 
     public URL findByShortCode(String shortCode) {
