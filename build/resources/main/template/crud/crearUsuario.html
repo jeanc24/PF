@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" data-theme="forest">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title th:text="${titulo}">Formulario Usuario</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="/css/output.css" rel="stylesheet">
+</head>
+
+<body class="min-h-screen flex flex-col bg-base-200">
+<!-- Navbar -->
+<div th:replace="~{template/partes/navbar.html :: navbar}"></div>
+
+<main class="flex-grow pt-20 pb-16 px-4 relative">
+    <!-- Fondo -->
+    <div th:replace="~{template/partes/fondo2.html :: fondo}"></div>
+
+    <div class="max-w-2xl mx-auto relative z-10 bg-base-100 p-8 rounded-xl shadow-2xl border border-base-300">
+        <h1 class="text-3xl font-bold mb-8 text-primary" th:text="${titulo}">Crear/Editar Usuario</h1>
+
+        <form th:action="${action}" method="post" class="space-y-6">
+            <!-- Campo oculto para saber si estamos editando -->
+            <input type="hidden" name="id" th:value="${usuario != null ? usuario.idUsuario : ''}"/>
+
+            <div>
+                <label for="username" class="block text-sm font-medium text-base-content">Username</label>
+                <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        th:value="${usuario != null ? usuario.username : ''}"
+                        required
+                        class="mt-1 block w-full bg-base-200 border border-base-300 rounded-md px-4 py-2 text-base-content focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"/>
+            </div>
+
+            <div>
+                <label for="nombre" class="block text-sm font-medium text-base-content">Nombre</label>
+                <input
+                        type="text"
+                        id="nombre"
+                        name="nombre"
+                        th:value="${usuario != null ? usuario.nombre : ''}"
+                        required
+                        class="mt-1 block w-full bg-base-200 border border-base-300 rounded-md px-4 py-2 text-base-content focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"/>
+            </div>
+
+            <div>
+                <label for="password" class="block text-sm font-medium text-base-content">Password</label>
+                <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        th:value="${usuario != null ? usuario.password : ''}"
+                        required
+                        class="mt-1 block w-full bg-base-200 border border-base-300 rounded-md px-4 py-2 text-base-content focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"/>
+            </div>
+
+            <div>
+                <label for="role" class="block text-sm font-medium text-base-content">Rol</label>
+                <select id="role" name="role" required
+                        class="mt-1 block w-full bg-base-200 border border-base-300 rounded-md px-4 py-2 text-base-content focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    <option th:each="rol : ${roles}"
+                            th:if="${rol.name() != 'NO_REGISTRADO'}"
+                            th:value="${rol.name()}"
+                            th:text="${rol.name()}"
+                            th:selected="${usuario != null and usuario.listaRoles != null and usuario.listaRoles.contains(rol)}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="flex justify-end space-x-4">
+                <a href="/crud-usuarios"
+                   class="btn btn-outline hover:bg-base-300">Cancelar</a>
+                <button type="submit"
+                        class="btn btn-primary hover:bg-primary-focus">
+                    Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer th:replace="~{template/partes/footer.html :: footer}"></footer>
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<input type="checkbox" value="nord" class="toggle theme-controller fixed bottom-4 right-4 z-50"/>
+</body>
+</html>

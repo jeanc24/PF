@@ -1,0 +1,27 @@
+<!-- Fondo con patrón binario -->
+<div th:fragment="fondo" class="fixed inset-0 z-10">
+    <div class="absolute inset-0 bg-base-200">
+        <div class="absolute inset-0 opacity-[0.15] dark:opacity-[0.1]">
+            <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <pattern id="binary-pattern"
+                         x="0" y="0"
+                         width="120" height="120"
+                         patternUnits="userSpaceOnUse">
+                    <!-- Textos binarios con colores temáticos -->
+                    <text x="5" y="15" class="text-[8px] fill-primary">10110101</text>
+                    <text x="35" y="30" class="text-[8px] fill-primary">01001010</text>
+                    <text x="5" y="45" class="text-[8px] fill-primary">11010010</text>
+                    <text x="35" y="60" class="text-[8px] fill-primary">00101101</text>
+                    <text x="5" y="75" class="text-[8px] fill-primary">10110101</text>
+                    <text x="35" y="90" class="text-[8px] fill-primary">01001010</text>
+                    <text x="5" y="105" class="text-[8px] fill-primary">11010010</text>
+                </pattern>
+                <rect width="100%" height="100%" fill="url(#binary-pattern)"/>
+            </svg>
+        </div>
+        <!-- Gradiente con colores del tema -->
+        <div class="absolute inset-0 bg-gradient-to-br
+                   from-base-100/60 via-base-100/0 to-base-100/60
+                   dark:from-base-100/80 dark:via-base-100/0 dark:to-base-100/80"></div>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@source "./src/main/resources/publico/*.{html,js}";
+@plugin "daisyui"{
+    themes: all;
+}
+@plugin "@tailwindcss/typography";

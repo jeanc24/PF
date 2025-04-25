@@ -1,0 +1,33 @@
+<!-- Fondo -->
+<div th:fragment="fondo" class="fixed inset-0 z-10"> <!-- Capa detrás de todo -->
+    <div class="absolute inset-0 bg-base-100"> <!-- bg-base-100 se adapta al tema -->
+        <div class="absolute inset-0">
+            <svg class="absolute inset-0 w-full h-full opacity-30 dark:opacity-20" xmlns="http://www.w3.org/2000/svg">
+                <pattern id="circuit-advanced" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                    {/* Nodes */}
+                    <circle cx="10" cy="10" r="2" class="fill-primary"/>
+                    <circle cx="10" cy="10" r="2" class="fill-primary"/>
+                    <circle cx="10" cy="10" r="2" class="fill-primary"/>
+                    <circle cx="10" cy="10" r="2" class="fill-primary"/>
+                    <circle cx="10" cy="10" r="2" class="fill-primary"/>
+                    <circle cx="10" cy="10" r="2" class="fill-primary"/>
+                    <circle cx="10" cy="10" r="2" class="fill-primary"/>
+                    <circle cx="10" cy="10" r="2" class="fill-primary"/>
+                    <circle cx="10" cy="10" r="2" class="fill-primary"/>
+
+
+                    {/* Connections */}
+                    <path
+                            d="M10 10 H 30 V 50 H 10 M50 10 V 30 H 90 M50 50 H 70 V 90 M10 50 H 30 M50 50 H 70 M90 50 V 70 H 70"
+                            stroke="currentColor"
+                            strokeWidth="1"
+                            class="text-primary"
+                            fill="none"
+                    />
+                </pattern>
+                <rect width="100%" height="100%" fill="url(#circuit-advanced)" />
+            </svg>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20"></div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" data-theme="forest">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalles de URL</title>
+  <link href="/css/output.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+
+<!-- Navbar -->
+<div th:replace="~{template/partes/navbar.html :: navbar}"></div>
+
+<main class="flex-grow pt-20 pb-16 px-4 relative">
+  <!-- Fondo -->
+  <div th:replace="~{template/partes/fondo2.html :: fondo}"></div>
+
+  <!-- Contenedor principal donde se cargarán los datos dinámicamente -->
+  <div id="contenedor-detalles" class="max-w-6xl mx-auto relative z-10 space-y-8">
+    <!-- El contenido se cargará aquí mediante JavaScript -->
+    <div class="text-center py-12">
+      <div class="inline-block bg-base-100 p-6 rounded-full mb-4">
+        <svg class="w-12 h-12 text-primary animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+        </svg>
+      </div>
+      <h3 class="text-xl font-bold mb-2">Cargando detalles...</h3>
+    </div>
+  </div>
+</main>
+
+<footer th:replace="~{template/partes/footer.html :: footer}"></footer>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/js/detallesUrl.js"></script>
+<input type="checkbox" value="nord" class="toggle theme-controller fixed bottom-4 right-4 z-50"/>
+</body>
+</html>

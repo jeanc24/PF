@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package urlrn;
+
+// Cliente que accedió a la URL
+message Cliente {
+  string idCliente = 1;
+  string navegador = 2;
+  string ipCliente = 3;
+  string sistemaOperativo = 4;
+  string fechaAcceso = 5;
+}
+
+// Mensaje principal de respuesta de una URL
+message UrlResponse {
+  string idUrl = 1;
+  string urlOriginal = 2;
+  string urlAcortada = 3;
+  int32 cantidadAccesos = 4;
+  string imagenBase64 = 5;
+  string fechaCreacion = 6;
+  repeated Cliente listaClientes = 7;
+}
+
+// Crear una URL (solo campos necesarios)
+message UrlCreateRequest {
+  string urlOriginal = 1;
+}
+
+// Actualizar una URL (ID + campo editable)
+message UrlUpdateRequest {
+  string idUrl = 1;
+  string urlOriginal = 2;
+}
+
+// Buscar por ID
+message UrlRequest {
+  string idUrl = 1;
+}
+
+// Lista de URLs
+message ListaUrl {
+  repeated UrlResponse urls = 1;
+}
+
+// Vacío
+message Empty {}
+message UrlBorrado {
+  string idUrl = 1;
+}
+
+// Servicio
+service UrlRn {
+  rpc GetUrl(UrlRequest) returns (UrlResponse);
+  rpc CreateUrl(UrlCreateRequest) returns (UrlResponse);
+  rpc UpdateUrl(UrlUpdateRequest) returns (UrlResponse);
+  rpc DeleteUrl(UrlBorrado) returns (UrlBorrado);
+  rpc GetAll(Empty) returns (ListaUrl);
+}

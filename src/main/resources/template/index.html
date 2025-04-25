@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-theme="forest">
+<head>
+    <meta charset="UTF-8">
+    <title>M&J</title>
+    <link href="/css/output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen flex flex-col">
+<!-- Navbar -->
+<div th:replace="~{template/partes/navbar.html :: navbar}"></div>
+
+<main class="flex-grow pt-16 pb-12 relative">
+
+    <div th:replace="~{template/partes/fondo.html :: fondo}"></div>
+
+    <!-- Contenedor de bienvenida -->
+    <div id="contenedor-bienvenida" class="hero bg-base-200 min-h-screen hidden z-20">
+        <div class="hero-content text-center">
+            <div class="max-w-md">
+                <h1 class="text-5xl font-bold">Hello there</h1>
+                <p class="py-6">
+                    We are M&J, the best tool to make URL shorter.
+                </p>
+                <button class="btn btn-primary" onclick="mostrarAcortador()">Get Started</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor del acortador -->
+    <div id="contenedor-acortador" class="min-h-screen bg-base-200 flex flex-col hidden z-30">
+        <!-- Formulario acortador -->
+        <div class="flex flex-col items-center justify-center text-center gap-4 px-4 z-30"
+             style="min-height: calc(100vh - 8rem);">
+            <form id="urlForm" class="flex flex-row items-center gap-4">
+                <label class="input validator w-full max-w-md">
+                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none"
+                           stroke="currentColor">
+                            <path
+                                    d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                            <path
+                                    d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                        </g>
+                    </svg>
+                    <input
+                            type="url"
+                            name="url"
+                            id="urlInput"
+                            required
+                            placeholder="https://"
+                            pattern="^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$"
+                            title="Must be valid URL"
+                    />
+                </label>
+                <button type="submit" class="btn btn-outline btn-primary">Acortar</button>
+                <p class="validator-hint">Must be valid URL</p>
+            </form>
+            <!-- Vista previa del link -->
+            <div id="preview" class="mt-4 w-full max-w-xl mx-auto"></div>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{template/partes/footer.html :: footer}"></footer>
+
+
+<!-- react + styled-components + microlink -->
+<script src="https://cdn.jsdelivr.net/combine/npm/react@18/umd/react.production.min.js,npm/react-dom@18/umd/react-dom.production.min.js,npm/react-is@18/umd/react-is.production.min.js,npm/styled-components@5/dist/styled-components.min.js,npm/@microlink/mql@latest/dist/mql.min.js,npm/@microlink/vanilla@5/dist/microlink.min.js"></script>
+<script src="/js/index.js"></script>
+<input type="checkbox" value="nord" class="toggle theme-controller fixed bottom-4 right-4 z-50"/>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" data-theme="forest">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo}">Gestión de Usuarios</title>
+    <link href="/css/output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen flex flex-col bg-base-200">
+
+<!-- Navbar -->
+<div th:replace="~{template/partes/navbar.html :: navbar}"></div>
+
+<main class="flex-grow pt-20 pb-16 px-4 relative">
+    <!-- Fondo con menor opacidad -->
+    <div th:replace="~{template/partes/fondo2.html :: fondo}"></div>
+
+    <div class="max-w-6xl mx-auto space-y-6 relative z-10"> <!-- Aseguramos que el contenido esté por encima del fondo -->
+        <!-- Encabezado -->
+        <div class="text-center">
+            <h1 class="text-5xl font-bold mb-2 text-base-content" th:text="${titulo}">Gestión de Usuarios</h1>
+            <p class="text-base-content/80">Lista de usuarios registrados</p>
+        </div>
+
+        <!-- Botón crear usuario -->
+        <div class="flex justify-end">
+            <a href="/crud-usuarios/crear" class="btn btn-neutral">
+                <i class="fas fa-user-plus mr-2"></i> Nuevo Usuario
+            </a>
+        </div>
+
+        <!-- Tabla de usuarios - Añadido más contraste -->
+        <div class="overflow-x-auto shadow-xl rounded-xl bg-base-100 border border-base-300">
+            <table class="table w-full">
+                <thead class="text-base-100 bg-primary">
+                <tr>
+                    <th class="text-lg">Username</th>
+                    <th class="text-lg">Nombre</th>
+                    <th class="text-lg">Rol</th>
+                    <th class="text-lg">Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="usuario : ${usuarios}"
+                    th:if="${usuario != null and not(usuario.getUsername.equals('admin')) and not(usuario.getUsername.equals(usuarioSesion.getUsername()))}"
+                    class="hover:bg-base-200">
+                    <td class="font-medium" th:text="${usuario.getUsername()}"></td>
+                    <td th:text="${usuario.getNombre()}"></td>
+                    <td>
+                        <span class="badge badge-primary" th:each="rol : ${usuario.getRolesSplitted(usuario)}" th:text="${rol}"></span>
+                    </td>
+                    <td class="space-x-2">
+                        <a th:href="@{'/crud-usuarios/editar/' + ${usuario.getIdUsuario()}}"
+                           class="btn btn-sm btn-neutral">
+                            <i class="fas fa-edit mr-1"></i> Editar
+                        </a>
+                        <a th:href="@{'/crud-usuarios/eliminar/' + ${usuario.getIdUsuario()}}"
+                           class="btn btn-sm btn-error"
+                           onclick="return confirm('¿Seguro que deseas eliminar este usuario?')">
+                            <i class="fas fa-trash-alt mr-1"></i> Eliminar
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Volver a inicio -->
+        <div class="pt-4">
+            <a th:href="@{'/'}" class="btn btn-outline">
+                <i class="fas fa-arrow-left mr-2"></i> Volver a inicio
+            </a>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{template/partes/footer.html :: footer}"></footer>
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<input type="checkbox" value="nord" class="toggle theme-controller fixed bottom-4 right-4 z-50"/>
+</body>
+</html>
