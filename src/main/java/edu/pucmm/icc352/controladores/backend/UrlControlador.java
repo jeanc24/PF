@@ -114,7 +114,7 @@ public class UrlControlador implements CrudOpenApi<URL> {
     )
     public void delete(@NotNull Context ctx) {
         try {
-            String shortcode = "https://pf-production.up.railway.app/api/cut/" + ctx.pathParam("shortcode");
+            String shortcode = "http://pf-production.up.railway.app/api/cut/" + ctx.pathParam("shortcode");
             URL url = urlServices.findByShortCode(shortcode);
 
             if (url == null) {
@@ -189,7 +189,7 @@ public class UrlControlador implements CrudOpenApi<URL> {
             responses = {@OpenApiResponse(status = "200", description = "Redirigir por url acortada", content = {@OpenApiContent(from = URL.class)})}
     )
     public void redirigirUrlOriginal(Context ctx) {
-        String codigoUrl = "https://pf-production.up.railway.app/api/cut/" + ctx.pathParam("shortcode");
+        String codigoUrl = "http://pf-production.up.railway.app/api/cut/" + ctx.pathParam("shortcode");
         System.out.println("primera parte");
         URL url = urlServices.findByShortCode(codigoUrl);
         if (url != null) {
