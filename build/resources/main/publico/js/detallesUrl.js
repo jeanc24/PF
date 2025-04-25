@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const path = window.location.pathname;
     const segments = path.split('/');
     const shortcode = segments[segments.length - 1];
-    const urlAcortada = `http://localhost:7001/api/cut/${shortcode}`;
+    const urlAcortada = `https://pf-production.up.railway.app/api/cut/${shortcode}`;
 
     // Hacer la petición al backend
     fetch(`/api/urls/detalles/${encodeURIComponent(urlAcortada)}`,{method: "GET",
